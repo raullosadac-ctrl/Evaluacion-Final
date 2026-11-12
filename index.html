@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El Gran Desafío SST</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
+
+body{
+background:linear-gradient(135deg,#2e7d32,#81c784);
+padding:20px;
+color:#333;
+}
+
+.container{
+max-width:1200px;
+margin:auto;
+background:white;
+padding:30px;
+border-radius:20px;
+box-shadow:0 10px 30px rgba(0,0,0,.25);
+}
+
+h1{
+text-align:center;
+color:#1b5e20;
+margin-bottom:10px;
+}
+
+.subtitulo{
+text-align:center;
+margin-bottom:25px;
+}
+
+.objetivo{
+background:#e8f5e9;
+padding:20px;
+border-radius:15px;
+border-left:6px solid #2e7d32;
+margin-bottom:25px;
+}
+
+.status{
+display:flex;
+justify-content:center;
+gap:40px;
+flex-wrap:wrap;
+margin-bottom:25px;
+}
+
+.status-card{
+background:#f1f8e9;
+padding:15px 25px;
+border-radius:15px;
+font-size:20px;
+font-weight:bold;
+box-shadow:0 4px 10px rgba(0,0,0,.1);
+}
+
+.progress-container{
+width:100%;
+height:25px;
+background:#ddd;
+border-radius:20px;
+overflow:hidden;
+margin-bottom:30px;
+}
+
+.progress-bar{
+width:0%;
+height:100%;
+background:#43a047;
+transition:.7s;
+}
+
+.estaciones{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:15px;
+margin-bottom:30px;
+}
+
+.estacion{
+background:#f9fff1;
+padding:15px;
+border-radius:15px;
+border:2px solid #c5e1a5;
+}
+
+.estacion h3{
+color:#2e7d32;
+margin-bottom:10px;
+}
+
+.question{
+background:#fafafa;
+padding:20px;
+margin-bottom:20px;
+border-radius:15px;
+border-left:6px solid #66bb6a;
+}
+
+.question h3{
+margin-bottom:15px;
+}
+
+label{
+display:block;
+padding:10px;
+margin-bottom:5px;
+border-radius:8px;
+cursor:pointer;
+transition:.2s;
+}
+
+label:hover{
+background:#f0f0f0;
+}
+
+.correct{
+background:#dcedc8 !important;
+}
+
+.wrong{
+background:#ffcdd2 !important;
+}
+
+button{
+background:#2e7d32;
+border:none;
+color:white;
+padding:15px 30px;
+font-size:18px;
+border-radius:10px;
+cursor:pointer;
+}
+
+button:hover{
+background:#1b5e20;
+}
+
+input[type=text]{
+width:100%;
+padding:12px;
+border-radius:10px;
+border:1px solid #ccc;
+margin-bottom:20px;
+}
+
+textarea{
+width:100%;
+height:120px;
+padding:12px;
+margin-top:10px;
+border-radius:10px;
+resize:none;
+}
+
+.resultado{
+display:none;
+padding:20px;
+margin-top:20px;
+border-radius:15px;
+font-weight:bold;
+font-size:22px;
+text-align:center;
+}
+
+.certificado{
+display:none;
+margin-top:30px;
+padding:30px;
+border:6px solid #2e7d32;
+border-radius:20px;
+background:#f1f8e9;
+text-align:center;
+}
+
+.certificado h2{
+color:#1b5e20;
+margin-bottom:15px;
+}
+
+.footer{
+text-align:center;
+margin-top:20px;
+color:#666;
+font-style:italic;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>🏆 EL GRAN DESAFÍO SST</h1>
+
+<p class="subtitulo">
+Seguridad y Salud en el Trabajo para Actividades Ganaderas
+</p>
+
+<div class="objetivo">
+<strong>Objetivo:</strong> Comprobar que los trabajadores comprendieron los contenidos de la inducción y pueden aplicarlos en sus actividades cotidianas.
+</div>
+
+<div class="status">
+
+<div class="status-card">
+❤️ Vidas: <span id="vidas">3</span>
+</div>
+
+<div class="status-card">
+⏳ Tiempo: <span id="timer">05:00</span>
+</div>
+
+</div>
+
+<div class="progress-container">
+<div id="barra" class="progress-bar"></div>
+</div>
+
+<h2>📍 Estaciones del desafío</h2>
+
+<div class="estaciones">
+
+<div class="estacion">
+<h3>🕵️ Detectives de la Seguridad</h3>
+<p>Identificar incidentes, accidentes y condiciones inseguras.</p>
+</div>
+
+<div class="estacion">
+<h3>🚨 Emergencias</h3>
+<p>Reconocer las acciones correctas de evacuación.</p>
+</div>
+
+<div class="estacion">
+<h3>❤️ Autocuidado</h3>
+<p>Prevenir enfermedades laborales.</p>
+</div>
+
+<div class="estacion">
+<h3>👥 Participación</h3>
+<p>Reconocer funciones de los organismos SST.</p>
+</div>
+
+<div class="estacion">
+<h3>🛡️ Compromiso</h3>
+<p>Promover una cultura de prevención.</p>
+</div>
+
+</div>
+
+<h2>🎯 Cuestionario SST</h2>
+
+<div class="question">
+<h3>1. Si un búfalo intenta embestir a un trabajador, pero no alcanza a lesionarlo, ¿qué debe hacer?</h3>
+
+<label><input type="radio" name="q1" value="0"> A. No informar porque no ocurrió ninguna lesión.</label>
+<label><input type="radio" name="q1" value="1"> B. Reportar inmediatamente el incidente al jefe inmediato.</label>
+<label><input type="radio" name="q1" value="0"> C. Continuar trabajando normalmente.</label>
+
+</div>
+
+<div class="question">
+<h3>2. Si se presenta una emergencia en el área de ordeño, ¿qué debe hacer el trabajador?</h3>
+
+<label><input type="radio" name="q2" value="0"> A. Correr sin tener en cuenta los riesgos.</label>
+<label><input type="radio" name="q2" value="0"> B. Regresar por sus herramientas.</label>
+<label><input type="radio" name="q2" value="1"> C. Suspender la actividad, informar y seguir la ruta de evacuación.</label>
+
+</div>
+
+<div class="question">
+<h3>3. ¿Cuál es una medida adecuada para prevenir enfermedades relacionadas con el contacto con animales?</h3>
+
+<label><input type="radio" name="q3" value="1"> A. Lavarse las manos y utilizar los elementos de protección correspondientes.</label>
+<label><input type="radio" name="q3" value="0"> B. Evitar únicamente el contacto con animales grandes.</label>
+<label><input type="radio" name="q3" value="0"> C. Utilizar los mismos guantes durante toda la jornada sin limpiarlos.</label>
+
+</div>
+
+<div class="question">
+<h3>4. ¿Qué organismo promueve y vigila las actividades de Seguridad y Salud en el Trabajo?</h3>
+
+<label><input type="radio" name="q4" value="0"> A. Comité de Convivencia Laboral.</label>
+<label><input type="radio" name="q4" value="1"> B. COPASST o Vigía SST.</label>
+<label><input type="radio" name="q4" value="0"> C. Área de producción exclusivamente.</label>
+
+</div>
+
+<div class="question">
+<h3>5. Si un trabajador identifica una puerta del corral en mal estado, ¿qué debe hacer?</h3>
+
+<label><input type="radio" name="q5" value="0"> A. Esperar hasta que ocurra un accidente.</label>
+<label><input type="radio" name="q5" value="0"> B. Repararla sin autorización.</label>
+<label><input type="radio" name="q5" value="1"> C. Informar inmediatamente al responsable del SG-SST.</label>
+
+</div>
+
+<h2>👨‍🌾 Datos del participante</h2>
+
+<input type="text" id="nombre" placeholder="Ingrese su nombre completo">
+
+<h2>✍️ Mi compromiso con la seguridad</h2>
+
+<textarea id="compromiso" placeholder="Escriba aquí su compromiso personal..."></textarea>
+
+<br><br>
+
+<center>
+<button onclick="calcular()">Finalizar Desafío</button>
+</center>
+
+<div id="resultado" class="resultado"></div>
+
+<div id="certificado" class="certificado">
+
+<h2>🏆 CERTIFICADO DE PARTICIPACIÓN</h2>
+
+<p>Se certifica que</p>
+
+<h2 id="nombreCertificado"></h2>
+
+<p>Participó satisfactoriamente en la actividad:</p>
+
+<h3>EL GRAN DESAFÍO SST</h3>
+
+<p id="puntaje"></p>
+
+<p id="fecha"></p>
+
+<h3>Compromiso asumido</h3>
+
+<p id="compromisoTexto"></p>
+
+</div>
+
+<div class="footer">
+Seguridad y Salud en el Trabajo • Capacitación e Inducción SST
+</div>
+
+</div>
+
+<script>
+
+let vidas = 3;
+let tiempo = 300;
+let juegoFinalizado = false;
+
+const respuestasCorrectas = {
+q1:"1",
+q2:"1",
+q3:"1",
+q4:"1",
+q5:"1"
+};
+
+let respondidas = 0;
+
+document.querySelectorAll('input[type="radio"]').forEach(input=>{
+
+input.addEventListener('change',function(){
+
+if(this.dataset.validada) return;
+
+this.dataset.validada=true;
+respondidas++;
+
+let label=this.parentElement;
+
+if(this.value==="1"){
+
+label.classList.add("correct");
+
+}else{
+
+label.classList.add("wrong");
+
+vidas--;
+
+document.getElementById("vidas").innerText=vidas;
+
+if(vidas<=0){
+
+alert("❌ Has perdido todas las vidas.");
+
+calcular();
+
+}
+
+}
+
+document.getElementById("barra").style.width=
+(respondidas/5*100)+"%";
+
+});
+
+});
+
+const cronometro=setInterval(()=>{
+
+if(juegoFinalizado) return;
+
+let minutos=Math.floor(tiempo/60);
+let segundos=tiempo%60;
+
+document.getElementById("timer").innerText=
+String(minutos).padStart(2,'0') + ":" +
+String(segundos).padStart(2,'0');
+
+tiempo--;
+
+if(tiempo<0){
+
+clearInterval(cronometro);
+
+alert("⏰ Tiempo agotado");
+
+calcular();
+
+}
+
+},1000);
+
+function calcular(){
+
+if(juegoFinalizado) return;
+
+juegoFinalizado=true;
+
+clearInterval(cronometro);
+
+let total=0;
+
+for(let i=1;i<=5;i++){
+
+let seleccion=document.querySelector(
+'input[name="q'+i+'"]:checked'
+);
+
+if(seleccion){
+
+total+=parseInt(seleccion.value);
+
+}
+
+}
+
+let rango="";
+
+if(total===5){
+
+rango="🥇 EXPERTO SST";
+
+}else if(total===4){
+
+rango="🥈 GUARDIÁN DE LA SEGURIDAD";
+
+}else if(total===3){
+
+rango="🥉 PROMOTOR SST";
+
+}else{
+
+rango="📚 REQUIERE REFUERZO";
+
+}
+
+const resultado=document.getElementById("resultado");
+
+resultado.style.display="block";
+
+resultado.style.background="#e8f5e9";
+
+resultado.innerHTML=
+"✅ Resultado Final: "+total+
+"/5 <br><br>"+rango;
+
+let nombre=document.getElementById("nombre").value;
+
+if(nombre.trim()===""){
+nombre="Participante";
+}
+
+document.getElementById("nombreCertificado").innerText=nombre;
+
+document.getElementById("puntaje").innerHTML=
+"<strong>Puntuación:</strong> "+total+
+"/5<br><br>"+rango;
+
+document.getElementById("fecha").innerHTML=
+"<strong>Fecha:</strong> "+
+new Date().toLocaleDateString("es-CO");
+
+document.getElementById("compromisoTexto").innerText=
+document.getElementById("compromiso").value;
+
+document.getElementById("certificado").style.display="block";
+
+window.scrollTo({
+top:document.body.scrollHeight,
+behavior:'smooth'
+});
+
+}
+</script>
+
+</body>
+</html>
